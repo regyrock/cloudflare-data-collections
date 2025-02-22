@@ -1,0 +1,24 @@
+[tool.pytest.ini_options]
+addopts = "--cov=src --cov-report=term-missing --cov-report=html"
+testpaths = ["tests"]
+
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.myproject]
+name = "cloudflare-data-collections"
+version = "0.1.0"
+description = "A sample project with JSON logging setup"
+authors = ["Your Name <your.email@example.com>"]
+
+[tool.cloudflare-data-collections.dependencies]
+# Production requirements
+requirements_file = "requirements/requirements.txt"
+
+[tool.cloudflare-data-collections.dev-dependencies]
+# Development dependencies
+dependencies_files = [
+    "requirements/requirements-dev.txt",
+    "requirements/requirements-test.txt"
+]

@@ -1,9 +1,10 @@
-.PHONY: requirements test
+.PHONY: requirements config test
 include .env
 
 requirements:
 	find requirements/ -name "*.txt" -exec pip install -r {} \;
-
+config:
+	 jrsonnet --line-padding 2 config/logging.jsonnet > config/logging.json
 explore:
 	jrsonnet bot.jsonnet
 request:

@@ -7,6 +7,7 @@ import sys
 
 def setup_logger() -> None:
     with open("logging.json", "r") as f:
+
         config = json.load(f)
         logging.config.dictConfig(config)
 

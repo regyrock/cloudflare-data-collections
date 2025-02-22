@@ -13,4 +13,5 @@ request:
      -H "Content-Type:application/json" | jq
 
 test:
+	jrsonnet --line-padding 2 api_responses.jsonnet > api_responses.json
 	py.test -sv

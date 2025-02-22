@@ -3,10 +3,11 @@ import json
 import logging
 import logging.config
 import sys
+from typing import Any, Dict, Generator
 
 
 def setup_logger() -> None:
-    with open("logging.json", "r") as f:
+    with open("config/logging.json", "r") as f:
 
         config = json.load(f)
         logging.config.dictConfig(config)
@@ -17,16 +18,16 @@ logger = logging.getLogger("AppLogger")
 
 
 def main() -> int:
-    pass
+    cloudflare_response: Dict[Any, Any] = {}
+    traffic_anomalies(cloudflare_response)
     return 1
 
 
-def add(a: int, b: int) -> int:
-    return a + b
-
-
-def sub(a: int, b: int) -> int:
-    return a - b
+def traffic_anomalies(cloudflare_response: Dict[Any, Any]) -> Generator[Any, Any, None]:
+    if cloudflare_response["errors"]:
+        logger.warning("Detected errors in CloudFlare response")
+    for anomaly in cloudflare_response["result"]["trafficAnomalies"]:
+        yield anomaly
 
 
 if __name__ == "__main__":
